@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:toro/cotacoes.dart';
 import 'package:toro/deposito.dart';
 import 'package:toro/saque.dart';
+import 'package:toro/state/CarteiraModel.dart';
 import 'package:toro/venda.dart';
 
 import 'carteira.dart';
 import 'compra.dart';
 
-main() => runApp(App());
+main() => runApp(ChangeNotifierProvider(
+      child: App(),
+      create: (context) => CarteiraModel(),
+    ));
 
 class App extends StatelessWidget {
   @override

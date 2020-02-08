@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:toro/custom/typography.dart';
 import 'package:toro/saque.dart';
+import 'package:toro/state/CarteiraModel.dart';
 
+import 'custom/valorMonetario.dart';
 import 'deposito.dart';
 
 class Carteira extends StatelessWidget {
@@ -16,26 +19,28 @@ class Carteira extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           Center(
-            child: H1("R\$ 1548.40"),
+            child: Consumer<CarteiraModel>(
+              builder: (context, model, child) => H1(
+                formatarValorMonetario(model.saldo),
+              ),
+            ),
           ),
-          Align(
-              alignment: Alignment.bottomCenter,
-              child: ButtonBar(
-                children: <Widget>[
-                  FlatButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, Saque.route);
-                    },
-                    child: Text("Sacar"),
-                  ),
-                  FlatButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, Deposito.route);
-                    },
-                    child: Text("Depositar"),
-                  ),
-                ],
-              ))
+          ButtonBar(
+            children: <Widget>[
+              FlatButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Saque.route);
+                },
+                child: Text("Sacar"),
+              ),
+              FlatButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Deposito.route);
+                },
+                child: Text("Depositar"),
+              ),
+            ],
+          )
         ],
       ),
     );
