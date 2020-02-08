@@ -5,13 +5,13 @@ class CarteiraModel extends ChangeNotifier {
 
   int get saldo => _saldo;
 
-  void depositar(int centavos) {
-    this._saldo += centavos;
+  void depositar(double centavos) {
+    this._saldo += (centavos * 100).toInt();
     notifyListeners();
   }
 
-  void sacar(int centavos) {
-    this._saldo -= centavos;
+  void sacar(double centavos) {
+    this._saldo -= (centavos * 100).toInt();
     notifyListeners();
   }
 }

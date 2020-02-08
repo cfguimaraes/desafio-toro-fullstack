@@ -19,7 +19,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Toro",
-      theme: ThemeData.light(),
+      theme: ThemeData.from(
+        colorScheme: ColorScheme.light(),
+      ),
       initialRoute: Carteira.route,
       routes: {
         Carteira.route: (c) => Carteira(),
