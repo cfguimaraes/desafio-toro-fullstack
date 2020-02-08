@@ -15,18 +15,20 @@ class Carteira extends StatelessWidget {
       ),
       body: ListView(
         children: <Widget>[
-          H1("R\$ 1548.40"),
+          Center(
+            child: H1("R\$ 1548.40"),
+          ),
           Align(
               alignment: Alignment.bottomCenter,
               child: ButtonBar(
                 children: <Widget>[
-                  RaisedButton(
+                  FlatButton(
                     onPressed: () {
                       Navigator.pushNamed(context, Saque.route);
                     },
                     child: Text("Sacar"),
                   ),
-                  RaisedButton(
+                  FlatButton(
                     onPressed: () {
                       Navigator.pushNamed(context, Deposito.route);
                     },
