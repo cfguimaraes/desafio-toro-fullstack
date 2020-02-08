@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:provider/provider.dart';
 import 'package:toro/custom/valorMonetario.dart';
-import 'package:toro/state/CarteiraModel.dart';
+import 'package:toro/state/carteira_model.dart';
 
 class Deposito extends StatefulWidget {
   static String route = "/deposito";

@@ -3,16 +3,29 @@ import 'package:provider/provider.dart';
 import 'package:toro/cotacoes.dart';
 import 'package:toro/deposito.dart';
 import 'package:toro/saque.dart';
-import 'package:toro/state/CarteiraModel.dart';
+import 'package:toro/state/carteira_model.dart';
+import 'package:toro/state/cotacoes_model.dart';
 import 'package:toro/venda.dart';
 
 import 'carteira.dart';
 import 'compra.dart';
 
-main() => runApp(ChangeNotifierProvider(
-      child: App(),
-      create: (context) => CarteiraModel(),
-    ));
+main() {
+  var m = CotacoesModel();
+  runApp(
+      MultiProvider(
+        child: App(),
+        providers: [
+          ChangeNotifierProvider(
+            create: (context) => CarteiraModel(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => CotacoesModel(),
+          ),
+        ],
+      ),
+    );
+}
 
 class App extends StatelessWidget {
   @override
