@@ -5,26 +5,24 @@ import 'package:toro/deposito.dart';
 import 'package:toro/saque.dart';
 import 'package:toro/state/carteira_model.dart';
 import 'package:toro/state/cotacoes_model.dart';
-import 'package:toro/venda.dart';
 
 import 'carteira.dart';
-import 'compra.dart';
+import 'catacao_acao.dart';
 
 main() {
-  var m = CotacoesModel();
   runApp(
-      MultiProvider(
-        child: App(),
-        providers: [
-          ChangeNotifierProvider(
-            create: (context) => CarteiraModel(),
-          ),
-          ChangeNotifierProvider(
-            create: (context) => CotacoesModel(),
-          ),
-        ],
-      ),
-    );
+    MultiProvider(
+      child: App(),
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => CarteiraModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => CotacoesModel(),
+        ),
+      ],
+    ),
+  );
 }
 
 class App extends StatelessWidget {
@@ -38,11 +36,10 @@ class App extends StatelessWidget {
       initialRoute: Carteira.route,
       routes: {
         Carteira.route: (c) => Carteira(),
-        Compra.route: (c) => Compra(),
+        CotacaoAcao.route: (c) => CotacaoAcao(),
         Cotacoes.route: (c) => Cotacoes(),
         Deposito.route: (c) => Deposito(),
         Saque.route: (c) => Saque(),
-        Venda.route: (c) => Venda(),
       },
     );
   }
