@@ -3,6 +3,7 @@ import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:provider/provider.dart';
 import 'package:toro/custom/typography.dart';
 import 'package:toro/custom/valorMonetario.dart';
+import 'package:toro/exceptions/saldo_insuficiente_exception.dart';
 import 'package:toro/state/carteira_model.dart';
 import 'package:toro/state/cotacoes_model.dart';
 
@@ -79,8 +80,20 @@ class _CotacaoAcaoState extends State<CotacaoAcao> {
               Consumer<CarteiraModel>(
                 builder: (context, model, child) => FlatButton(
                   onPressed: () {
-                    model.comprar(context, arguments.acao,
-                        int.parse(_valorController.text));
+                    try {
+                      model.comprar(context, arguments.acao,
+                          int.parse(_valorController.text));
+                    } on SaldoInsuficienteException catch (e) {
+                      showDialog(
+                          context: context,
+                          barrierDismissible: true,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text(e.message),
+                              content: Text(e.operacao + "\n" + e.detalhes),
+                            );
+                          });
+                    }
                   },
                   child: Text('Comprar'),
                 ),

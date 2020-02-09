@@ -65,7 +65,7 @@ class CarteiraModel extends ChangeNotifier {
       int valorTotalDaCompra, int lotes, String acao) {
     if (valorTotalDaCompra > this.saldo) {
       throw SaldoInsuficienteException(
-          operacao: "Compra de $lotes da ação $acao",
+          operacao: "Compra de $lotes lotes da ação $acao",
           detalhes: "Saldo disponível: ${this._saldo}." +
               "\nValor da operação: ${formatarValorMonetario(valorTotalDaCompra)}");
     }
