@@ -56,7 +56,7 @@ class _DepositoState extends State<Deposito> {
                           Text("Saldo ${formatarValorMonetario(model.saldo)}"),
                     );
                     Scaffold.of(context).showSnackBar(snackbar);
-                    _valorCtrl.clear();
+                    _valorCtrl.updateValue(0);
                   },
                   child: Text("Depositar"),
                 ),

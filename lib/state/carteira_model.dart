@@ -7,7 +7,7 @@ import 'package:toro/state/cotacoes_model.dart';
 
 class CarteiraModel extends ChangeNotifier {
   int _saldo = 0;
-  Map<String, int> _acoes;
+  Map<String, int> _acoes = new Map();
 
   int get saldo => _saldo;
 
@@ -32,11 +32,16 @@ class CarteiraModel extends ChangeNotifier {
     var papel = cotacoesModel.getEntry(acao);
     var valorTotalDaCompra = ((papel.value * 100).toInt()) * lotes;
 
-    validaSeTemSaldoEmCarteiraParaCompraDaAcao(valorTotalDaCompra, lotes, acao);
+    _validaSeTemSaldoEmCarteiraParaCompraDaAcao(
+        valorTotalDaCompra, lotes, acao);
 
     // Registrar evento de compra de ações
     this._saldo -= valorTotalDaCompra; // Deduz do seu saldo o valor da operação
-    this._acoes[acao] += lotes; // Incrementa a quantidade de lotes sob posse
+    this._acoes.containsKey(acao) // Se já tem a chave incrementa, senão seta
+        ? this._acoes[acao] += lotes
+        : this._acoes[acao] =
+            lotes; // Incrementa a quantidade de lotes sob posse
+    notifyListeners();
   }
 
   /// Efetuar a venda do lote desejado.
@@ -51,23 +56,34 @@ class CarteiraModel extends ChangeNotifier {
     var valorTotalDaVenda = ((papel.value * 100).toInt()) * lotes;
 
     // Registrar evento de venda de ações
-    if (this._acoes[acao] < lotes) {
+
+    // Se não tiver ações para vender deve lançar exceção
+
+    var quantidadeDeAcoesDisponiveis = (this._acoes ?? const {})[acao] ?? 0;
+    if (lotes > quantidadeDeAcoesDisponiveis) {
       throw NumeroAcoesInvalidoException(
           operacao: "Venda de $lotes da ação $acao",
-          detalhes: "Quantidade de lotes disponíveis: ${this._acoes[acao]}." +
-              "\nQuantidade solicitada $lotes");
+          detalhes:
+              "Quantidade de lotes disponíveis: $quantidadeDeAcoesDisponiveis" +
+                  "\nQuantidade solicitada $lotes");
     }
 
     this._saldo += valorTotalDaVenda;
+    this._acoes[acao] -= lotes;
+    notifyListeners();
   }
 
-  void validaSeTemSaldoEmCarteiraParaCompraDaAcao(
+  void _validaSeTemSaldoEmCarteiraParaCompraDaAcao(
       int valorTotalDaCompra, int lotes, String acao) {
     if (valorTotalDaCompra > this.saldo) {
       throw SaldoInsuficienteException(
-          operacao: "Compra de $lotes lotes da ação $acao",
+          operacao: "Compra de $lotes lotes da ação $acao.",
           detalhes: "Saldo disponível: ${this._saldo}." +
               "\nValor da operação: ${formatarValorMonetario(valorTotalDaCompra)}");
     }
+  }
+
+  int getQuantidadeDeLotesDeAcoesSobCustodia(String acao) {
+    return (this._acoes ?? const {})[acao] ?? 0;
   }
 }

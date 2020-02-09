@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:toro/exceptions/base_exception.dart';
 
-class NumeroAcoesInvalidoException {
-  final String message;
-
+class NumeroAcoesInvalidoException extends BaseException {
   NumeroAcoesInvalidoException({@required String operacao, @required detalhes})
-      : this.message = "Lotes de ações inválidos para concluir a operação";
+      : super(
+          "Lotes de ações inválidos para concluir a operação",
+          operacao,
+          detalhes,
+        );
 }

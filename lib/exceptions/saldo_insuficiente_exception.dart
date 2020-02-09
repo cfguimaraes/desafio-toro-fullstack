@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:toro/exceptions/base_exception.dart';
 
-class SaldoInsuficienteException {
-  final String message;
-  final String operacao;
-  final String detalhes;
+class SaldoInsuficienteException extends BaseException {
   SaldoInsuficienteException({
-    @required this.operacao,
-    @required this.detalhes,
-  }) : this.message =
-            "A sua carteira não tem saldo suficiente para concluir a operação";
+    @required operacao,
+    @required detalhes,
+  }) : super(
+          "A sua carteira não tem saldo suficiente para concluir a operação",
+          operacao,
+          detalhes,
+        );
 }
