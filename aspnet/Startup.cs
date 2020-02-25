@@ -40,7 +40,7 @@ namespace toro
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseWebSockets();
 
             app.UseEndpoints(endpoints =>
             {
