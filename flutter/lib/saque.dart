@@ -51,7 +51,7 @@ class _SaqueState extends State<Saque> {
               Consumer<CarteiraModel>(
                 builder: (context, model, child) => FlatButton(
                   onPressed: () {
-                    model.sacar(_valorCtrl.numberValue);
+                    model.sacar((_valorCtrl.numberValue * 100).toInt());
                     var snackbar = SnackBar(
                       content:
                           Text("Saldo ${formatarValorMonetario(model.saldo)}"),

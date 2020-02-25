@@ -3,21 +3,30 @@ import 'package:provider/provider.dart';
 import 'package:toro/custom/valorMonetario.dart';
 import 'package:toro/exceptions/numero_acoes_invalido_exception.dart';
 import 'package:toro/exceptions/saldo_insuficiente_exception.dart';
+import 'package:toro/repository/repository.dart';
+import 'package:toro/repository/sync_model.dart';
 import 'package:toro/state/cotacoes_model.dart';
 
 class CarteiraModel extends ChangeNotifier {
   int _saldo = 0;
   Map<String, int> _acoes = new Map();
+  Repository _repository = Repository();
 
   int get saldo => _saldo;
 
-  void depositar(double centavos) {
-    this._saldo += (centavos * 100).toInt();
+  /// A valor informado deve ser em centavos
+  void depositar(int centavos) {
+    this._saldo += centavos;
+
+    var model = SyncModel(Operacao.deposito, "{amount : $centavos}");
+    _repository.insertEvent(model);
+
     notifyListeners();
   }
 
-  void sacar(double centavos) {
-    this._saldo -= (centavos * 100).toInt();
+  /// A valor informado deve ser em centavos
+  void sacar(int centavos) {
+    this._saldo -= centavos ;
     notifyListeners();
   }
 
@@ -45,9 +54,12 @@ class CarteiraModel extends ChangeNotifier {
   }
 
   /// Efetuar a venda do lote desejado.
-  /// {@param [context]} BuildContext que contém a instância do provider [CotacoesModel]
-  /// {@param [acao]} Nome da ação a ser comprada
-  /// {@param [lotes]} Quantidade de lotes para comprar
+  ///
+  /// [context] BuildContext que contém a instância do provider [CotacoesModel]
+  ///
+  /// [acao] Nome da ação a ser comprada
+  ///
+  /// [lotes] Quantidade de lotes para comprar
   ///
   /// [SaldoInsuficienteException] Quando o valor do saldo em carteira não for suficiente para a compra do lote
   void vender(BuildContext context, String acao, int lotes) {

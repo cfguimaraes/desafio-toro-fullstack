@@ -82,3 +82,4 @@ build/
 .history
 
 # End of https://www.gitignore.io/api/linux,flutter,visualstudiocode
+aspnet/obj/Debug/netcoreapp3.1/toro.csprojAssemblyReference.cache

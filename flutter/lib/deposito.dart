@@ -50,7 +50,7 @@ class _DepositoState extends State<Deposito> {
               Consumer<CarteiraModel>(
                 builder: (context, model, child) => FlatButton(
                   onPressed: () {
-                    model.depositar(_valorCtrl.numberValue);
+                    model.depositar((_valorCtrl.numberValue * 100).toInt());
                     var snackbar = SnackBar(
                       content:
                           Text("Saldo ${formatarValorMonetario(model.saldo)}"),
