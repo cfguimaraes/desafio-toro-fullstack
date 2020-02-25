@@ -11,6 +11,7 @@ class SyncModel {
         "PAYLOAD": payload,
         "OPERACAO": operacao.toString(),
         "DATA_SINCRONIA": _timestamp,
+
       };
 }
 

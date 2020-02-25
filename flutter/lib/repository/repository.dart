@@ -4,11 +4,12 @@ import 'package:sqflite/sqflite.dart';
 import 'sync_model.dart';
 
 class Repository {
-  static Database _database;
+
+  Database _database;
+  Repository() {}
 
   Future<Database> _openDB() async {
-    return openDatabase(join(await getDatabasesPath(), "toro_2.db"),
-        version: 1,
+    return openDatabase(join(await getDatabasesPath(), String.fromEnvironment("TORO_DB_EVENTS")),
         onCreate: (db, version) => {
               db.execute(
                 """
@@ -30,5 +31,6 @@ class Repository {
   Future insertEvent(SyncModel data) async {
     await _initDb();
     await _database.insert("EVENTS", data.toMap());
+
   }
 }
