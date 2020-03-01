@@ -1,5 +1,5 @@
 {
-  "FilePath": "/home/cfguimaraes/projects/toro/aspnet/toro.csproj",
+  "FilePath": "/home/cfguimaraes/projects/toro/aspnet/api/api.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "3.0",
@@ -20498,7 +20498,7 @@
     ],
     "CSharpLanguageVersion": 800
   },
-  "RootNamespace": "toro",
+  "RootNamespace": "api",
   "Documents": [],
   "SerializationFormat": "0.2"
 }

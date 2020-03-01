@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:web_socket_channel/io.dart';
 
 class CotacoesModel extends ChangeNotifier {
-  final _socket = IOWebSocketChannel.connect(String.fromEnvironment("TORO_URL_QUOTES"));
+  final _socket = IOWebSocketChannel.connect("ws://192.168.0.14:8080/quotes");
   final store = SplayTreeMap<String, double>();
 
   CotacoesModel() {

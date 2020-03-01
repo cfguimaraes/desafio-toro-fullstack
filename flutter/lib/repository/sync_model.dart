@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class SyncModel {
   Operacao operacao;
   String payload;
@@ -11,8 +13,9 @@ class SyncModel {
         "PAYLOAD": payload,
         "OPERACAO": operacao.toString(),
         "DATA_SINCRONIA": _timestamp,
-
       };
+
+  toJson() => jsonEncode(this.toMap());
 }
 
 enum Operacao { deposito, saque, compra, venda }

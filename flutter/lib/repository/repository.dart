@@ -1,15 +1,20 @@
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:toro/repository/sync_socket.dart';
 
 import 'sync_model.dart';
 
 class Repository {
-
   Database _database;
-  Repository() {}
+  final syncSocket = SyncSocket();
 
   Future<Database> _openDB() async {
-    return openDatabase(join(await getDatabasesPath(), String.fromEnvironment("TORO_DB_EVENTS")),
+    return openDatabase(
+        join(
+          await getDatabasesPath(),
+          "toro1.db",
+        ),
+        version: 1,
         onCreate: (db, version) => {
               db.execute(
                 """
@@ -31,6 +36,6 @@ class Repository {
   Future insertEvent(SyncModel data) async {
     await _initDb();
     await _database.insert("EVENTS", data.toMap());
-
+    this.syncSocket.add(data);
   }
 }

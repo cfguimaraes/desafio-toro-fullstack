@@ -7,9 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/toro.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "${workspaceFolder}/aspnet.sln"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -19,7 +17,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/toro.csproj",
+                "${workspaceFolder}/api/toro.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -32,7 +30,7 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/toro.csproj",
+                "${workspaceFolder}/api/toro.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
