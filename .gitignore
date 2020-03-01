@@ -71,15 +71,21 @@ build/
 .nfs*
 
 ### VisualStudioCode ###
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+.vscode
+aspnet/.vscode/
 
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
 
 # End of https://www.gitignore.io/api/linux,flutter,visualstudiocode
-aspnet/obj/Debug/netcoreapp3.1/toro.csprojAssemblyReference.cache
+aspnet/*/obj
+aspnet/*/bin
+aspnet/api/obj/project.assets.json
+aspnet/api/obj/toro.csproj.nuget.cache
+aspnet/api/obj/toro.csproj.nuget.dgspec.json
+aspnet/api/obj/Debug/netcoreapp3.1/project.razor.json
+aspnet/api/obj/Debug/netcoreapp3.1/toro.assets.cache
+aspnet/api/obj/Debug/netcoreapp3.1/toro.csprojAssemblyReference.cache
+aspnet/.vscode/launch.json
+aspnet/.vscode/tasks.json

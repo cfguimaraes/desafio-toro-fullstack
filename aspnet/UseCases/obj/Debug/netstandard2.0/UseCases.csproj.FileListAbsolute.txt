@@ -1,8 +1,0 @@
-/home/cfguimaraes/projects/toro/aspnet/UseCases/bin/Debug/netstandard2.0/UseCases.deps.json
-/home/cfguimaraes/projects/toro/aspnet/UseCases/bin/Debug/netstandard2.0/UseCases.dll
-/home/cfguimaraes/projects/toro/aspnet/UseCases/bin/Debug/netstandard2.0/UseCases.pdb
-/home/cfguimaraes/projects/toro/aspnet/UseCases/obj/Debug/netstandard2.0/UseCases.csprojAssemblyReference.cache
-/home/cfguimaraes/projects/toro/aspnet/UseCases/obj/Debug/netstandard2.0/UseCases.AssemblyInfoInputs.cache
-/home/cfguimaraes/projects/toro/aspnet/UseCases/obj/Debug/netstandard2.0/UseCases.AssemblyInfo.cs
-/home/cfguimaraes/projects/toro/aspnet/UseCases/obj/Debug/netstandard2.0/UseCases.dll
-/home/cfguimaraes/projects/toro/aspnet/UseCases/obj/Debug/netstandard2.0/UseCases.pdb
